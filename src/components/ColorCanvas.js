@@ -1,31 +1,35 @@
 import React from "react";
-// import PROJECT_CONSTANTS from '../config';
 import ColoredPixel from "./ColoredPixel";
-import "./ColorCanvas.css";
 
 function ColorCanvas(props) {
-  console.log(props);
-
-  var pixel_rgb_array = React.useMemo(() => {
-    var pixel_rgbi_array = [];
-    var counter = 0;
-    for (let i = props.red_start; i <= props.red_end; i = i + 8) {
-      for (let j = 8; j <= 256; j = j + 8) {
-        for (let k = 8; k <= 256; k = k + 8) {
+  const pixel_rgb_array = React.useMemo(() => {
+    const rgbi_array = [];
+    let counter = 0;
+    for (
+      let i = props.color_start;
+      i <= props.color_end;
+      i = i + props.color_step
+    ) {
+      for (
+        let j = props.color_start;
+        j <= props.color_end;
+        j = j + props.color_step
+      ) {
+        for (
+          let k = props.color_start;
+          k <= props.color_end;
+          k = k + props.color_step
+        ) {
           counter++;
-          pixel_rgbi_array.push(
-            <ColoredPixel key={counter} red={i} green={j} blue={k} />
+          rgbi_array.push(
+            <ColoredPixel key={`value=${counter}`} red={i} green={j} blue={k} />
           );
         }
       }
     }
-    // console.log(counter);
+    return rgbi_array;
+  }, [props.color_start, props.color_end, props.color_step]);
 
-    return pixel_rgbi_array;
-  }, [props.red_start, props.red_end]);
-
-  return <React.Fragment>{pixel_rgb_array}</React.Fragment>;
-
-  //    return <span style={{backgroundColor:'rgba(19,19,19)'}}></span>;
+  return pixel_rgb_array;
 }
 export default ColorCanvas;

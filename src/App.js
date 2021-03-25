@@ -1,23 +1,30 @@
 import React from "react";
 import ColorCanvas from "./components/ColorCanvas";
-import "./components/ColorCanvas.css";
-
-//import logo from './logo.svg';
 import "./App.css";
+import PROJECT_CONSTANTS from "./config";
+import styled from "styled-components";
 
 function App() {
+  const FlexBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 60px;
+    margin: 60px;
+    height: 128px;
+    width: 256px;
+  `;
+
   return (
     <div className="App">
-      <div className="flex_box">
-        {/* <ColorCanvas red_start={8} red_end={40}></ColorCanvas>
-        <ColorCanvas red_start={48} red_end={80}></ColorCanvas>
-        <ColorCanvas red_start={88} red_end={120}></ColorCanvas>
-        <ColorCanvas red_start={128} red_end={160}></ColorCanvas>
-        <ColorCanvas red_start={168} red_end={200}></ColorCanvas>
-        <ColorCanvas red_start={208} red_end={240}></ColorCanvas>
-        <ColorCanvas red_start={248} red_end={256}></ColorCanvas> */}
-        <ColorCanvas red_start={8} red_end={256}></ColorCanvas>
-      </div>
+      <h1>Color Plotted Image</h1>
+      <FlexBox>
+        <ColorCanvas
+          color_start={PROJECT_CONSTANTS.COLOR_START}
+          color_end={PROJECT_CONSTANTS.COLOR_END}
+          color_step={PROJECT_CONSTANTS.STEPS}
+        ></ColorCanvas>
+      </FlexBox>
     </div>
   );
 }

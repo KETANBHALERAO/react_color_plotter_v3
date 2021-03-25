@@ -1,6 +1,7 @@
 const PROJECT_CONSTANTS = {
-    dimension_x: 255,
-    dimension_y: 255
+  COLOR_START: 8,
+  COLOR_END: 256,
+  STEPS: 8
 };
 
 export default PROJECT_CONSTANTS;
