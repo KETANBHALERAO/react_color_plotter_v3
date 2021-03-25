@@ -4,17 +4,18 @@ import "./App.css";
 import PROJECT_CONSTANTS from "./config";
 import styled from "styled-components";
 
-function App() {
-  const FlexBox = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    padding: 60px;
-    margin: 60px;
-    height: 128px;
-    width: 256px;
-  `;
+const FlexBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  height: 128px;
+  width: 256px;
+`;
 
+function App() {
   return (
     <div className="App">
       <h1>Color Plotted Image</h1>
@@ -23,7 +24,7 @@ function App() {
           color_start={PROJECT_CONSTANTS.COLOR_START}
           color_end={PROJECT_CONSTANTS.COLOR_END}
           color_step={PROJECT_CONSTANTS.STEPS}
-        ></ColorCanvas>
+        />
       </FlexBox>
     </div>
   );
