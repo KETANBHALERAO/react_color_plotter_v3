@@ -11,15 +11,18 @@ const FlexBox = styled.div`
   top: 50%;
   left: 50%;
   margin: auto;
-  height: 128px;
-  width: 256px;
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
 `;
 
 function App() {
   return (
     <div className="App">
       <h1>Color Plotted Image</h1>
-      <FlexBox>
+      <FlexBox
+        height={PROJECT_CONSTANTS.PLOTTER_HEIGHT}
+        width={PROJECT_CONSTANTS.PLOTTER_WIDTH}
+      >
         <ColorCanvas
           color_start={PROJECT_CONSTANTS.COLOR_START}
           color_end={PROJECT_CONSTANTS.COLOR_END}
