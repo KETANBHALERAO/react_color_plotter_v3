@@ -19,7 +19,7 @@ function ColoredPixel(props) {
     height: "1px",
     width: "1px"
   };
-  return <div style={style_obj} />;
+  return <div role="div" style={style_obj} />;
 }
 
 export default ColoredPixel;
