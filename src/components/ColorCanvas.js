@@ -16,14 +16,14 @@ function ColorCanvas(props) {
     const rgbi_array = [];
     let counter = 0;
     for (
-      let i = props.color_start;
-      i <= props.color_end;
-      i = i + props.color_step
+      let i = props.color_end;
+      i >= props.color_start;
+      i = i - props.color_step
     ) {
       for (
-        let j = props.color_start;
-        j <= props.color_end;
-        j = j + props.color_step
+        let j = props.color_end;
+        j >= props.color_start;
+        j = j - props.color_step
       ) {
         for (
           let k = props.color_start;

@@ -7,7 +7,7 @@ import styled from "styled-components";
 const FlexBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: column-reverse;
   top: 50%;
   left: 50%;
   margin: auto;
