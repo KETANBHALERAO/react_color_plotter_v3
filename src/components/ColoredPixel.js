@@ -1,18 +1,19 @@
-function ColoredPixel(props) {
-  let red, green, blue;
-  red = props.red;
-  blue = props.blue;
-  green = props.green;
+/**
+ * @author Ketan Bhalerao
+ * @description This component generates div
+ * with background color specified by props red, green, blue
+ * e.g if red - 80, green - 80, blue - 16, which is #505010 in hex
+ * will generate color similar to Henna
+ *
+ * @todo - We are hardcoding pixels height,width size to 1px,
+ * which can be converted to config based
+ *
+ * @param {red, green, blue} props
+ */
 
-  if (props.red === 256) {
-    red = 255;
-  }
-  if (props.green === 256) {
-    green = 255;
-  }
-  if (props.blue === 256) {
-    blue = 255;
-  }
+function ColoredPixel(props) {
+  const { red, green, blue } = props;
+
   var style_obj = {
     backgroundColor: "rgb(" + red + "," + green + "," + blue + ")",
     height: "1px",
