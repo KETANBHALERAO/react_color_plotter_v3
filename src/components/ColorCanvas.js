@@ -26,13 +26,13 @@ function ColorCanvas(props) {
         j = j - props.color_step
       ) {
         for (
-          let k = props.color_start;
-          k <= props.color_end;
-          k = k + props.color_step
+          let k = props.color_end;
+          k >= props.color_start;
+          k = k - props.color_step
         ) {
           counter++;
           rgbi_array.push(
-            <ColoredPixel key={`value=${counter}`} red={i} green={j} blue={k} />
+            <ColoredPixel key={`value=${counter}`} red={k} green={j} blue={i} />
           );
         }
       }
