@@ -1,5 +1,29 @@
 import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 import ColorCanvas from "./ColorCanvas";
+import colorGenerator from "../hooks/colorGenerator";
+
+/**
+ * This will call custom hook which generates color array
+ * Checks for uniqueness & size of array generated
+ */
+
+test("Color Canvas - Check for unique colors", async () => {
+  const [color_start, color_end, color_step] = [8, 16, 8];
+
+  const color_list = [];
+  for (let comb of colorGenerator({
+    color_start: color_start,
+    color_end: color_end,
+    color_step: color_step
+  })) {
+    color_list.push(comb);
+  }
+  const unique_color_list_size = new Set(color_list).size;
+  expect(unique_color_list_size === color_list.length).toBeTruthy();
+
+  expect(unique_color_list_size).toEqual(8);
+});
 
 /**
  * This will render ColorCanvas Component
@@ -7,18 +31,21 @@ import ColorCanvas from "./ColorCanvas";
  */
 
 test("renders color canvas", async () => {
-  render(<ColorCanvas color_start={8} color_end={16} color_step={8} />);
+  const [color_start, color_end, color_step] = [8, 16, 8];
+
+  render(
+    <ColorCanvas
+      color_start={color_start}
+      color_end={color_end}
+      color_step={color_step}
+    />
+  );
 
   const items = await screen.findAllByRole("div");
   expect(items).toHaveLength(8);
 
   expect(items[0]).toHaveAttribute(
     "style",
-    "background-color: rgb(8, 8, 8); height: 1px; width: 1px;"
-  );
-
-  expect(items[6]).toHaveAttribute(
-    "style",
-    "background-color: rgb(16, 16, 8); height: 1px; width: 1px;"
+    "background-color: rgb(16, 16, 16); height: 1px; width: 1px;"
   );
 });

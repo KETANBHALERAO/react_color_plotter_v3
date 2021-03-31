@@ -11,9 +11,7 @@
  * @param {red, green, blue} props
  */
 
-function ColoredPixel(props) {
-  const { red, green, blue } = props;
-
+function ColoredPixel({ red, green, blue }) {
   var style_obj = {
     backgroundColor: "rgb(" + red + "," + green + "," + blue + ")",
     height: "1px",

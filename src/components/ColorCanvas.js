@@ -1,5 +1,6 @@
 import React from "react";
 import ColoredPixel from "./ColoredPixel";
+import colorGenerator from "../hooks/colorGenerator";
 
 /**
  * @author Ketan Bhalerao
@@ -12,33 +13,19 @@ import ColoredPixel from "./ColoredPixel";
  */
 
 function ColorCanvas(props) {
-  const pixel_rgb_array = React.useMemo(() => {
-    const rgbi_array = [];
-    let counter = 0;
-    for (
-      let i = props.color_end;
-      i >= props.color_start;
-      i = i - props.color_step
-    ) {
-      for (
-        let j = props.color_end;
-        j >= props.color_start;
-        j = j - props.color_step
-      ) {
-        for (
-          let k = props.color_end;
-          k >= props.color_start;
-          k = k - props.color_step
-        ) {
-          counter++;
-          rgbi_array.push(
-            <ColoredPixel key={`value=${counter}`} red={k} green={j} blue={i} />
-          );
-        }
-      }
-    }
-    return rgbi_array;
-  }, [props.color_start, props.color_end, props.color_step]);
+  const pixel_rgb_array = [];
+  let counter = 1;
+  for (let comp of colorGenerator({ ...props })) {
+    counter++;
+    pixel_rgb_array.push(
+      <ColoredPixel
+        key={`value=${counter}`}
+        red={comp.red}
+        green={comp.green}
+        blue={comp.blue}
+      />
+    );
+  }
 
   return pixel_rgb_array;
 }
