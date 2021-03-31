@@ -1,32 +1,45 @@
-import React from "react";
-import ColoredPixel from "./ColoredPixel";
+import React, { useRef, useEffect } from "react";
 import useColorGenerator from "../hooks/colorGenerator";
+import config from "../config";
 
 /**
  * @author Ketan Bhalerao
- * @description This component generates array of ColoredPixel Components
+ * @description This component Plot list of colors on Canvas
  * based on props passed, list of props it accepts are given below
  * e.g if start - 8, end - 256, step - 8,
- * it will generate 32768 components with those many distinct r,g,b values
+ * it will plot 32768 distinct color with those many distinct r,g,b values
  *
  * @param {color_start, color_end, color_step} props
  */
 
 function ColorCanvas(props) {
-  const pixel_rgb_array = [];
-  let counter = 1;
-  for (let comp of useColorGenerator({ ...props })) {
-    counter++;
-    pixel_rgb_array.push(
-      <ColoredPixel
-        key={`value=${counter}`}
-        red={comp.red}
-        green={comp.green}
-        blue={comp.blue}
-      />
-    );
+  const canvasRef = useRef(null);
+  const colors = useColorGenerator({ ...props });
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  let loader = null;
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    for (let i = 1; i < config.PLOTTER_WIDTH; i++) {
+      for (let j = 1; j < config.PLOTTER_HEIGHT; j++) {
+        let { red, green, blue } = colors.next().value;
+        context.fillStyle = "rgb(" + red + "," + green + "," + blue + ")";
+        context.fillRect(i, j, 1, 1);
+      }
+    }
+    setIsLoaded(true);
+  }, [colors]);
+
+  if (!isLoaded) {
+    loader = <div>LOADING.......</div>;
   }
 
-  return pixel_rgb_array;
+  return (
+    <div>
+      {loader}
+      <canvas ref={canvasRef} />
+    </div>
+  );
 }
 export default ColorCanvas;

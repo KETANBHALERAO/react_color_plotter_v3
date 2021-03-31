@@ -1,4 +1,4 @@
-const PROJECT_CONSTANTS = {
+export default {
   /*
   RGB - Red, Green, Blue Color Model 
   follows 2 Digit HEX Number format
@@ -33,5 +33,3 @@ const PROJECT_CONSTANTS = {
   PLOTTER_HEIGHT: 128,
   PLOTTER_WIDTH: 256
 };
-
-export default PROJECT_CONSTANTS;
