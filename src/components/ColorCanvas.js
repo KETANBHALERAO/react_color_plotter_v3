@@ -1,6 +1,6 @@
 import React from "react";
 import ColoredPixel from "./ColoredPixel";
-import colorGenerator from "../hooks/colorGenerator";
+import useColorGenerator from "../hooks/colorGenerator";
 
 /**
  * @author Ketan Bhalerao
@@ -15,7 +15,7 @@ import colorGenerator from "../hooks/colorGenerator";
 function ColorCanvas(props) {
   const pixel_rgb_array = [];
   let counter = 1;
-  for (let comp of colorGenerator({ ...props })) {
+  for (let comp of useColorGenerator({ ...props })) {
     counter++;
     pixel_rgb_array.push(
       <ColoredPixel

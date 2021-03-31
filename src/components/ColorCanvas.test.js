@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import ColorCanvas from "./ColorCanvas";
-import colorGenerator from "../hooks/colorGenerator";
+import useColorGenerator from "../hooks/colorGenerator";
+import PROJECT_CONSTANTS from "../config";
 
 /**
  * This will call custom hook which generates color array
@@ -9,10 +10,14 @@ import colorGenerator from "../hooks/colorGenerator";
  */
 
 test("Color Canvas - Check for unique colors", async () => {
-  const [color_start, color_end, color_step] = [8, 16, 8];
+  const [color_start, color_end, color_step] = [
+    PROJECT_CONSTANTS.COLOR_START,
+    PROJECT_CONSTANTS.COLOR_END,
+    PROJECT_CONSTANTS.STEPS
+  ];
 
   const color_list = [];
-  for (let comb of colorGenerator({
+  for (let comb of useColorGenerator({
     color_start: color_start,
     color_end: color_end,
     color_step: color_step
@@ -22,7 +27,7 @@ test("Color Canvas - Check for unique colors", async () => {
   const unique_color_list_size = new Set(color_list).size;
   expect(unique_color_list_size === color_list.length).toBeTruthy();
 
-  expect(unique_color_list_size).toEqual(8);
+  expect(unique_color_list_size).toEqual(32768);
 });
 
 /**
