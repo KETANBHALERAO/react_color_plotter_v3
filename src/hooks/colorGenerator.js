@@ -8,7 +8,7 @@
  * @param {color_start, color_end, color_step}
  */
 
-function* usetColorGenerator({ color_start, color_end, color_step }) {
+function* useColorGenerator({ color_start, color_end, color_step }) {
   for (let i = color_end; i >= color_start; i = i - color_step) {
     for (let j = color_end; j >= color_start; j = j - color_step) {
       for (let k = color_end; k >= color_start; k = k - color_step) {
@@ -22,4 +22,4 @@ function* usetColorGenerator({ color_start, color_end, color_step }) {
   }
 }
 
-export default usetColorGenerator;
+export default useColorGenerator;
